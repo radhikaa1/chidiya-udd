@@ -6,13 +6,16 @@ import { Avatar } from "material-ui";
 class Home extends React.Component {
   render() {
     return (
-      <div style={{ textAlign: "center", width: this.props.width, height: this.props.height }}>
+      <div style={{ textAlign: "center", width: this.props.width }}>
         <h1>Welcome to Chidiya udd</h1>
 
-        <img
-          src="cloud.jpg"
-          style={{ width: this.props.width > 500 ? null : "100%", height: "60%", marginLeft: "8%" }}
-        />
+        <div>
+          {" "}
+          <img
+            src="cloud.jpg"
+            style={{ width: this.props.width > 500 ? null : "100%", height: "60%", marginTop: "8%" }}
+          />
+        </div>
         <Button style={{ margin: 50 }} onClick={() => this.props.history.push(DISPLAYIMAGE)}>
           Next{" "}
         </Button>

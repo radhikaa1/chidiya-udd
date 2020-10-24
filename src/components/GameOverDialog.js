@@ -66,10 +66,10 @@ export default function CustomizedDialogs(props) {
       </Button> */}
       <Dialog onClose={props.handleClose} aria-labelledby="customized-dialog-title" open={props.openDialog}>
         <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
-          GAME OVER
+          GAME OVER !!!!
         </DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>Your Score is {props.score - 2} </Typography>
+          <Typography gutterBottom>Your Score is {props.score}</Typography>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={props.handleClose} color="primary">

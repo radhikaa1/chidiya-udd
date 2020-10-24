@@ -60,52 +60,52 @@ const imagesData = [
     path: "/images/148.jpg",
     flag: 0,
   },
-  {
-    id: 12,
-    path: "/images/12.jpg",
-    flag: 1,
-  },
-  {
-    id: 13,
-    path: "/images/13.jpg",
-    flag: 1,
-  },
-  {
-    id: 14,
-    path: "/images/14.jpg",
-    flag: 1,
-  },
-  {
-    id: 15,
-    path: "/images/15.jpg",
-    flag: 1,
-  },
-  {
-    id: 16,
-    path: "/images/16.jpg",
-    flag: 1,
-  },
-  {
-    id: 17,
-    path: "/images/17.jpg",
-    flag: 1,
-  },
-  {
-    id: 18,
-    path: "/images/18.jpg",
-    flag: 1,
-  },
+  //   {
+  //     id: 12,
+  //     path: "/images/12.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 13,
+  //     path: "/images/13.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 14,
+  //     path: "/images/14.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 15,
+  //     path: "/images/15.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 16,
+  //     path: "/images/16.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 17,
+  //     path: "/images/17.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 18,
+  //     path: "/images/18.jpg",
+  //     flag: 1,
+  //   },
 
-  {
-    id: 19,
-    path: "/images/19.jpg",
-    flag: 1,
-  },
-  {
-    id: 20,
-    path: "/images/20.jpg",
-    flag: 1,
-  },
+  //   {
+  //     id: 19,
+  //     path: "/images/19.jpg",
+  //     flag: 1,
+  //   },
+  //   {
+  //     id: 20,
+  //     path: "/images/20.jpg",
+  //     flag: 1,
+  //   },
   //   {
   //     id: 21,
   //     path: "/images/21.jpg",
@@ -350,12 +350,22 @@ class DisplayImage extends React.Component {
     });
   };
   handleFly(value) {
-    val = val + 1;
+    console.log(value);
+    if (value.flag === 1) {
+      val = val + 1;
+    } else {
+      val = val - 1;
+    }
     this.setState({ score: val });
   }
 
   handleNotFly(value) {
-    val = val + 1;
+    console.log(value);
+    if (value.flag === 0) {
+      val = val + 1;
+    } else {
+      val = val - 1;
+    }
     this.setState({ score: val });
   }
   render() {
@@ -365,40 +375,48 @@ class DisplayImage extends React.Component {
       <div
         style={{
           textAlign: "center",
-          //   backgroundImage: 'url("final.png") ',
-          //   backgroundRepeat: "no-repeat",
-          //   backgroundColor: "#5bc6e67a",
-          //   width: this.props.width,
-          //   height: this.props.height,
           width: this.props.width,
-          height: this.props.height,
+          //   border: "1px solid green",
         }}
       >
         {/* <img src="final.png" style={{ width: "100%", height: "100%" }} /> */}
-        <h1>Display image here</h1>
+        <h1 style={{ marginTop: 40, marginBottom: 50 }}>Display image here</h1>
         {timeCounter === 0 ? <h1>Loading...</h1> : null}
         {imagesData.map((data, index) => {
           return (
-            <Avatar
-              key={index}
-              alt="R"
-              src={data.path}
-              style={{ width: 250, height: 250, display: data.id === timeCounter ? "inline-flex" : "none" }}
-            />
+            <div>
+              <Avatar
+                key={index}
+                alt="R"
+                src={data.path}
+                style={{ width: 250, height: 250, display: data.id === timeCounter ? "inline-flex" : "none" }}
+              />
+
+              <div>
+                {timeCounter === 0 ? null : data.id === timeCounter ? (
+                  <div
+                    style={{
+                      margin: "auto",
+                      marginTop: 50,
+                      width: 300,
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                    key={index}
+                  >
+                    {" "}
+                    <Button variant="contained" color="primary" onClick={() => this.handleFly(data)}>
+                      Fly
+                    </Button>
+                    <Button variant="contained" color="secondary" onClick={() => this.handleNotFly(data)}>
+                      No Fly
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
+            </div>
           );
         })}
-
-        {timeCounter === 0 ? null : (
-          <div style={{ margin: "auto", marginTop: 50, width: 300, display: "flex", justifyContent: "space-between" }}>
-            {" "}
-            <Button variant="contained" color="primary" onClick={() => this.handleFly(1)}>
-              Fly
-            </Button>
-            <Button variant="contained" color="secondary" onClick={() => this.handleNotFly(1)}>
-              No Fly
-            </Button>
-          </div>
-        )}
         {this.state.openDialog ? (
           <GameOverDialog openDialog={this.state.openDialog} handleClose={this.handleClose} score={this.state.score} />
         ) : null}
