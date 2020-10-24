@@ -1,15 +1,16 @@
 import React from "react";
-import Layout from "../layouts/Layout";
+import Button from "@material-ui/core/Button";
+import { withRouter } from "react-router";
+import { DISPLAYIMAGE } from "../constants/routes";
 class Home extends React.Component {
   render() {
     return (
-      <Layout>
-        <div>
-          <h1>hii</h1>
-        </div>
-      </Layout>
+      <div>
+        <h1>welcome to Chidiya udd</h1>
+        <Button onClick={() => this.props.history.push(DISPLAYIMAGE)}>Next </Button>
+      </div>
     );
   }
 }
 
-export default Home;
+export default withRouter(Home);
